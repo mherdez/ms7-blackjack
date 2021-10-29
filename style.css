@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap');
+
+body {
+   background-color: rgb(18, 104, 1);
+   color: white;
+   font-family: 'Raleway';
+}
+
+h1, h3 {
+   margin: 0;
+}
+
+.navbar {
+   text-align: center;
+   background-color: black;
+   padding: 15px;
+   margin-bottom: 10px;
+}
+
+h1 {
+   font-size: 28px;
+   letter-spacing: 1px;
+   font-weight: 600;
+}
+
+.buttons {
+   text-align: center;
+}
+
+.btn {
+   color: white;
+   border: 0; 
+   padding: 7px 15px;
+   border-radius: 5px;
+   margin-left: 5px;
+   cursor: pointer;
+   margin-bottom: 10px;
+}
+
+.bg-red {
+   background-color: rgb(255, 55, 55);
+}
+
+.bg-red:hover {
+   background-color: rgb(190, 36, 36);
+}
+
+.bg-blue {
+   background-color: rgb(23, 104, 255);
+}
+
+.bg-blue:hover {
+   background-color: rgb(20, 82, 196);
+}
+
+.table {
+   margin-left: 80px;
+}
+
+.jugador, .computadora {
+   margin-bottom: 15px;
+}
+
+.jugador h3, .computadora h3 {
+   font-size: 30px;
+   font-weight: 300;
+   margin-bottom: 10px;
+}
+
+.jugador img, .computadora img {
+   width: 180px;
+   min-height: 275px;
+}
