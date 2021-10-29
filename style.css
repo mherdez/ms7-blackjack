@@ -59,6 +59,7 @@ h1 {
 
 .jugador, .computadora {
    margin-bottom: 15px;
+   min-height: 325px;
 }
 
 .jugador h3, .computadora h3 {
@@ -69,5 +70,4 @@ h1 {
 
 .jugador img, .computadora img {
    width: 180px;
-   min-height: 275px;
 }
