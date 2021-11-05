@@ -38,11 +38,11 @@ h1 {
 }
 
 .bg-red {
-   background-color: rgb(255, 55, 55);
+   background-color: rgb(253, 34, 34);
 }
 
 .bg-red:hover {
-   background-color: rgb(190, 36, 36);
+   background-color: rgb(155, 25, 25);
 }
 
 .bg-blue {
@@ -50,7 +50,7 @@ h1 {
 }
 
 .bg-blue:hover {
-   background-color: rgb(20, 82, 196);
+   background-color: rgb(16, 68, 165);
 }
 
 .table {
@@ -69,5 +69,9 @@ h1 {
 }
 
 .jugador img, .computadora img {
-   width: 180px;
+   width: 170px;
+   position: relative;
+   left: 120px; 
+   margin-left: -120px;
+   height: 268px;
 }
