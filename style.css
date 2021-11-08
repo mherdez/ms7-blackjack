@@ -53,6 +53,12 @@ h1 {
    background-color: rgb(16, 68, 165);
 }
 
+.btn-disabled {
+   background-color: rgb(12, 53, 129);
+   cursor: auto;
+   color: gray;
+}
+
 .table {
    margin-left: 80px;
 }
