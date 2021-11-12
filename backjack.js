@@ -18,16 +18,7 @@ let totalPuntosComputadora = 0;
 
 // EVENTOS
 btnNuevoJuego.addEventListener('click', () => {
-   console.clear();
-   mazo = [];
-   crearMazo();
-   imgCartasJugador.innerHTML = '';
-   imgCartasComputadora.innerHTML = '';
-   totalPuntosJugador = 0;
-   puntosJugador.textContent = totalPuntosJugador;
-   totalPuntosComputadora = 0;
-   puntosComputadora.textContent = totalPuntosComputadora;
-   btnEnabled();
+   nuevoJuego();
 });
 
 // OPTIMIZAR FUNCION (JUGADOR Y COMPUTADORA SON SIMILARES)
@@ -63,7 +54,7 @@ const crearMazo = () => {
       }
    }
    mazo = _.shuffle(mazo);
-   console.log(mazo)
+   // console.log(mazo)
 }
 
 const crearCarta = () => {
@@ -114,7 +105,6 @@ const turnoComputadora = () => {
       imgCartasComputadora.innerHTML += `<img src="./assets/cartas/${carta}.png">`
       totalPuntosComputadora += valorCarta(carta);
       puntosComputadora.textContent = totalPuntosComputadora;
-
       if (totalPuntosJugador > 21) {
          winPlayer = false;
          break;
@@ -122,18 +112,48 @@ const turnoComputadora = () => {
       if (totalPuntosComputadora >= totalPuntosJugador && totalPuntosComputadora <= 21) {
          winPlayer = false;
          break;
-      } 
-   } while (totalPuntosComputadora <= 21) 
-   
-   if(totalPuntosComputadora > 21) {
+      }
+   } while (totalPuntosComputadora <= 21)
+   if (totalPuntosComputadora > 21) {
       winPlayer = true;
    }
+   const finJuego = setTimeout(() => {
+      if (winPlayer) {
+         document.querySelector('.mensaje').innerHTML = ' <img src="https://media.giphy.com/media/lnyPptAfGwHeTdoQDk/giphy-downsized-large.gif" alt=""><h2>Quieres volver a jugar? <span>SI</span>/<span>NO</span></h2>'
+         const si = document.querySelectorAll('span')[0];
+         const no = document.querySelectorAll('span')[1];
+         si.addEventListener('click', () => {
+            nuevoJuego();
+         })
+         no.addEventListener('click', () => {
+            alert("Gracias por jugar Blackjack")
+         })
+      } else {
+         document.querySelector('.mensaje').innerHTML = ' <img src="https://media.giphy.com/media/u03ahOT8hXFUGYaZ1n/giphy.gif" alt=""><h2>Quieres volver a jugar? <span>SI</span>/<span>NO</span></h2>'
+         const si = document.querySelectorAll('span')[0];
+         const no = document.querySelectorAll('span')[1];
+         si.addEventListener('click', () => {
+            nuevoJuego();
+         })
+         no.addEventListener('click', () => {
+            alert("Gracias por jugar Blackjack")
+         })
+      }
+   }, 1000)
+}
 
-   if(winPlayer) {
-      console.log('el jugador ganó')
-   } else {
-      console.log('la computadora ganó')
-   }
+const nuevoJuego = () => {
+   console.clear();
+   mazo = [];
+   crearMazo();
+   imgCartasJugador.innerHTML = '';
+   imgCartasComputadora.innerHTML = '';
+   totalPuntosJugador = 0;
+   puntosJugador.textContent = totalPuntosJugador;
+   totalPuntosComputadora = 0;
+   puntosComputadora.textContent = totalPuntosComputadora;
+   btnEnabled();
+   document.querySelector('.mensaje').innerHTML = ''
 }
 // INICIO
 crearMazo();

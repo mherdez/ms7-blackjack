@@ -4,6 +4,7 @@ body {
    background-color: rgb(18, 104, 1);
    color: white;
    font-family: 'Raleway';
+   user-select: none;
 }
 
 h1, h3 {
@@ -80,4 +81,21 @@ h1 {
    left: 120px; 
    margin-left: -120px;
    height: 268px;
+}
+
+.mensaje {
+   position: absolute;
+   top: 30%;
+   left: 30%;
+   font-size: 20px;
+   text-align: center;
+}
+
+.mensaje span {
+   color: yellow;
+}
+
+.mensaje span:hover {
+   color: black;
+   cursor: pointer;
 }
