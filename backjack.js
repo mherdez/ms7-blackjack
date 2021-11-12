@@ -27,9 +27,7 @@ btnNuevoJuego.addEventListener('click', () => {
    puntosJugador.textContent = totalPuntosJugador;
    totalPuntosComputadora = 0;
    puntosComputadora.textContent = totalPuntosComputadora;
-   btnPedirCarta.removeAttribute('disabled');
-   btnPedirCarta.classList.remove('btn-disabled');
-   btnPedirCarta.classList.add('bg-blue');
+   btnEnabled();
 });
 
 // OPTIMIZAR FUNCION (JUGADOR Y COMPUTADORA SON SIMILARES)
@@ -39,15 +37,14 @@ btnPedirCarta.addEventListener('click', () => {
    totalPuntosJugador += valorCarta(carta);
    puntosJugador.textContent = totalPuntosJugador;
    if (totalPuntosJugador > 21) {
-      juegoPerdidoJugador();
+      btnDisabled();
+      turnoComputadora();
    }
 })
 
 btnDetener.addEventListener('click', () => {
-   const carta = pedirCarta();
-   imgCartasComputadora.innerHTML += `<img src="./assets/cartas/${carta}.png">`
-   totalPuntosComputadora += valorCarta(carta);
-   puntosComputadora.textContent = totalPuntosComputadora;
+   btnDisabled();
+   turnoComputadora();
 })
 
 // FUNCIONES
@@ -72,7 +69,7 @@ const crearMazo = () => {
 const crearCarta = () => {
    const carta = document.createElement('img');
    const valor = pedirCarta();
-   const src   = `./assets/cartas/${valor}.png`;
+   const src = `./assets/cartas/${valor}.png`;
    carta.src = src;
    cartasJugador.append(carta)
    return valor;
@@ -92,12 +89,58 @@ const valorCarta = (carta) => {
    return valor;
 }
 
-const juegoPerdidoJugador = () => {
-   console.log('el jugador ya perdio');
+const btnDisabled = () => {
    btnPedirCarta.setAttribute('disabled', true);
-   btnPedirCarta.classList.remove('bg-blue');
    btnPedirCarta.classList.add('btn-disabled');
+   btnPedirCarta.classList.remove('bg-blue');
+   btnDetener.setAttribute('disabled', true);
+   btnDetener.classList.remove('bg-blue');
+   btnDetener.classList.add('btn-disabled');
 }
 
+const btnEnabled = () => {
+   btnPedirCarta.removeAttribute('disabled');
+   btnPedirCarta.classList.remove('btn-disabled');
+   btnPedirCarta.classList.add('bg-blue');
+   btnDetener.removeAttribute('disabled');
+   btnDetener.classList.remove('btn-disabled');
+   btnDetener.classList.add('bg-blue');
+}
+
+const turnoComputadora = () => {
+   let winPlayer = false;
+   do {
+      const carta = pedirCarta();
+      imgCartasComputadora.innerHTML += `<img src="./assets/cartas/${carta}.png">`
+      totalPuntosComputadora += valorCarta(carta);
+      puntosComputadora.textContent = totalPuntosComputadora;
+
+      if (totalPuntosJugador > 21) {
+         winPlayer = false;
+         break;
+      }
+      if (totalPuntosComputadora >= totalPuntosJugador && totalPuntosComputadora <= 21) {
+         winPlayer = false;
+         break;
+      } 
+   } while (totalPuntosComputadora <= 21) 
+   
+   if(totalPuntosComputadora > 21) {
+      winPlayer = true;
+   }
+
+   if(winPlayer) {
+      console.log('el jugador ganó')
+   } else {
+      console.log('la computadora ganó')
+   }
+}
 // INICIO
 crearMazo();
+
+// SI EL JUGADOR TIENE MAS DE 21:
+// ------- LA COMPUTADORA SOLO DEBERÁ SACAR UNA CARTA (GANA)
+// SI EL JUGADOR NO TIENE MAS DE 21:
+// --- LA COMPUTADORA SACARÁ CARTAS HASTA QUE SUCEDA ALGO DE LO SIGUIENTE:
+//-------- QUE TENGA MAS DE 21 PUNTOS (PIERDE)
+//-------- CUANDO TENGA MAS PUNTOS QUE EL JUGADOR (GANA)
