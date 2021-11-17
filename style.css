@@ -4,7 +4,7 @@ body {
    background-color: rgb(18, 104, 1);
    color: white;
    font-family: 'Raleway';
-   user-select: none;
+   user-select: none; 
 }
 
 h1, h3 {
